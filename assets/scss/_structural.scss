@@ -1,0 +1,48 @@
+/*
+
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+html {
+  font-size: 62.5% !important;
+  @media (max-width: $tablet) {
+    font-size: 59% !important;
+  }
+  @media (max-width: $smartphone) {
+    font-size: 55% !important;
+  }
+}
+
+body {
+  background: #fff;
+  line-height: 1;
+}*/
+
+@mixin container {
+  padding:0 $horizontal-padding;
+  max-width: $desktop;
+  box-sizing: border-box;
+
+  @media (max-width: $tablet-big) {
+    padding: 0 $horizontal-padding-mobile;
+    text-align: center;
+  }
+}
+
+@mixin section {
+  max-width: $desktop;
+  min-width: 100%;
+  padding: $section-padding;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  margin: 0 auto;
+
+  @media (max-width: $tablet-big) {
+    padding: $vertical-padding $horizontal-padding-mobile;
+    text-align: center;
+  }
+}
