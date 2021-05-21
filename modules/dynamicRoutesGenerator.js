@@ -1,4 +1,4 @@
-import APIService from '../services/APIService'
+import StaticAPIService from '../services/StaticAPIService'
 
 const dynamicRoutesGenerator = function () {
   //Before hook to generate our custom routes
@@ -21,29 +21,30 @@ let generateDynamicRoutes = async function() {
   //Routes array
   let routes = []
   //
-  let navMenuRoutes = APIService.getStaticAPIData("navMenuRoutes")
+  let navegacao = StaticAPIService.getStaticAPIData("navegacao")
   //Loop nivel0
-  for (let routeNivel0 of navMenuRoutes) {
+  for (let nivel0 of navegacao) {
     //Create nivel0 object payload
     let payloadNivel0 = { 
-      paginaId: routeNivel0.pagina ? routeNivel0.pagina._id : null,
-      navMenuNivel0Id: routeNivel0._id
+      paginaId: nivel0.pagina ? nivel0.pagina._id : null,
+      nivel0Id: nivel0._id
     }
     //Put the route and payload in the routes array
     routes.push({ 
-      route: routeNivel0.url, 
+      route: nivel0.url, 
       payload: payloadNivel0
     })
     //Loop nivel1
-    for (let routeNivel1 of routeNivel0.navMenuNivel1) {
+    if (!nivel0.nivel1) continue
+    for (let nivel1 of nivel0.nivel1) {
       //Create nivel1 object payload
       let payloadNivel1 = { 
-        paginaId: routeNivel1._id,
-        navMenuNivel0Id: routeNivel0._id
+        paginaId: nivel1.pagina ? nivel1.pagina._id : null,
+        nivel0Id: nivel0._id
       }
       //Put the route and payload in the routes array
       routes.push({ 
-        route: routeNivel1.url, 
+        route: nivel1.url, 
         payload: payloadNivel1
       })
     }

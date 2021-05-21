@@ -1,15 +1,24 @@
-import APIService from '../services/APIService'
+import StaticAPIService from '../services/StaticAPIService'
+import QueryService from '../services/QueryService'
+import datatradeCMSUtils from 'datatrade-cms-utils'
 
 const staticAPIGenerator = function () {
   //Add hook before build to create our static API files
   this.nuxt.hook('build:before', async (nuxt, buildOptions) => {
     console.log('build:before')
     //Fetch the routes and pages from API
-    //let navMenuRoutes = await APIService.fetchQuery(QueryService.navMenuRoutesQuery())
-    //let pages = await APIService.fetchQuery(QueryService.paginasQuery())
+    datatradeCMSUtils.setApiUrl("http://localhost:1337")
+    //Organized navigation
+    let navegacao = await datatradeCMSUtils.fetchQuery(QueryService.navegacaoQuery())
+    //Raw navigation for easier/optimized search
+    let rawNavegacao = await datatradeCMSUtils.fetchQuery(QueryService.navegacaoQuery(), false)
+    rawNavegacao = rawNavegacao.navegacaos
+    //The site pages
+    let paginas = await datatradeCMSUtils.fetchQuery(QueryService.paginasQuery())
     //Cache the queries results into staticAPI files
-    //APIService.saveStaticAPIData("navMenuRoutes", navMenuRoutes)
-    //APIService.saveStaticAPIData("pages", pages)
+    StaticAPIService.saveStaticAPIData("navegacao", navegacao)
+    StaticAPIService.saveStaticAPIData("rawNavegacao", rawNavegacao)
+    StaticAPIService.saveStaticAPIData("paginas", paginas)
   })
 }
 

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "datatrade-cms-utils": "git+https://github.com/brunomptavares/datatrade-cms-utils.git",
+    "lodash": "^4.17.21",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {}

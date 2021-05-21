@@ -1,65 +1,38 @@
-import APIService from '../services/APIService'
+import StaticAPIService from '../services/StaticAPIService'
 
 //Find the page
-let getPage = function(url) {
-  let pageId
-  //Loop through the navMenu entries to find the page with url
-  for(let navMenuNivel0 of this.navMenuRoutes) {
-    if (navMenuNivel0.url && navMenuNivel0.url === url) {
-      pageId = navMenuNivel0.page ? navMenuNivel0.page._id : null
-      break
-    }
-    for(let navMenuNivel1 of navMenuNivel0.navMenuNivel1) {
-      if (navMenuNivel1.url && navMenuNivel1.url === url) {
-        pageId = navMenuNivel1.page ? navMenuNivel1.page._id : null
-        break
-      }
-    }
-    if (pageId) break
-  }
-  return this.pages.find(p => { return p._id === pageId  })
+let getPagina = function(pageUrl, pageId) {
+  if (pageUrl) return this.paginas.find(p => p.url === pageUrl)
 }
 
-//Find left nav items, which are the navMenuNivel1 entries, from the given url
-let getLeftNav = function(url) {
+//Find left nav items, which are the nivel1 entries, from the given url
+let getLeftNav = function(pageUrl) {
   let leftNav
-  //Loop through the navMenu entries
-  for(let navMenuNivel0 of this.navMenuRoutes) {
-    for(let navMenuNivel1 of navMenuNivel0.navMenuNivel1) {
-      if (navMenuNivel1.url && navMenuNivel1.url === url) {
-        leftNav = navMenuNivel0.navMenuNivel1
-        break
-      }
+  //Loop through the nivel0 entries
+  for(let nivel0 of this.navegacao) {
+    //Find at nivel1 the url we are looking for
+    if (nivel0.nivel1 && nivel0.nivel1.length > 0) {
+      leftNav = nivel0.nivel1.find(p => {
+        return p.url === pageUrl
+      })
+      break
     }
-    if (leftNav) break
   }
   return leftNav
 }
 
-//Find which navMenuNivel0 belongs to the url
-let getNivel0 = function(url) {
-  let nivel0
-  //Loop through the navMenu entries
-  for(let navMenuNivel0 of this.navMenuRoutes) {
-    if (navMenuNivel0.url && navMenuNivel0.url === url) {
-      nivel0 = navMenuNivel0._id
-      break
-    }
-    for(let navMenuNivel1 of navMenuNivel0.navMenuNivel1) {
-      if (navMenuNivel1.url && navMenuNivel1.url === url) {
-        nivel0 = navMenuNivel0._id
-        break
-      }
-    }
-    if (nivel0) break
-  }
-  return nivel0
+//Find which nivel0 belongs to the url
+let getNivel0 = function(pageUrl) {
+  //Split the url
+  let urlSplit = pageUrl.split('/')
+  //Find the nivel0 with the url in the first slash, 1 because 0 is empty space
+  return this.navegacao.find(p => urlSplit[1] === pageUrl)
 }
 
 export default async (context, inject) => {
   //Get routes and files from the files
-  let navMenuRoutes = APIService.getStaticAPIData("navMenuRoutes")
-  let pages = APIService.getStaticAPIData("pages")
+  let navegacao = StaticAPIService.getStaticAPIData("navegacao")
+  let paginas = StaticAPIService.getStaticAPIData("paginas")
   //Put the objects and functions in the $staticAPI property
-  inject ('staticAPI', { navMenuRoutes, pages, getPage, getLeftNav, getNivel0 })
+  inject ('staticAPI', { navegacao, paginas, getPagina, getLeftNav, getNivel0 })
 }
