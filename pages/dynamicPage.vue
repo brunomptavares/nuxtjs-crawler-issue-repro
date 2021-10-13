@@ -22,11 +22,11 @@ export default {
   },
   asyncData(context) {
     //console.log("asyncData")
-    //console.log(context.payload)
+    console.log(context.payload)
   },
   //Nuxtjs
   async middleware({payload, store}) {
-    
+    console.log(payload)
   },
   fetch() {
     if (process.server) {

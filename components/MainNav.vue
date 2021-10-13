@@ -34,6 +34,9 @@ export default {
   methods: {
   },
   //Nuxtjs,
+  async middleware({ params, payload, store }) {
+    console.log(payload)
+  },
   fetch() {
     if (process.server) {
       this.navMenuNivel0 = this.$staticAPI.navMenuRoutes
