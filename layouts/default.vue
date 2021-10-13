@@ -1,7 +1,15 @@
 <template>
-  <div class="default-layout-wrapper">
-    <main-nav />
-    <Nuxt :key="$route.fullPath"/>
+  <div class="container">
+    <div class="default-layout-wrapper section">
+      <div class="columns">
+        <div class="column is-3">
+          <left-nav />
+        </div>
+        <div class="column is-9">
+          <nuxt :key="$route.fullPath"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

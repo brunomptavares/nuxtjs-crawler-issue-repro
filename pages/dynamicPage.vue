@@ -1,8 +1,8 @@
 <template>
-  <section v-if="this.page">
-    <h1>{{ this.page.title }}</h1>
-    <p>{{ this.page.text }}</p>
-    <left-nav />
+  <section v-if="this.pagina">
+    <h1 class="title">{{ this.pagina.titulo }}</h1>
+    <h2 class="subtitle">{{ this.pagina.subTitulo }}</h2>
+    <span class="content" v-html="this.pagina.corpoHTML"/>
   </section>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   name: 'dynamicPage',
   data() {
     return {
-      page: null
+      pagina: null
     }
   },
   created() {
@@ -26,11 +26,12 @@ export default {
   },
   //Nuxtjs
   async middleware({payload, store}) {
-    console.log(payload)
+    //console.log(payload)
   },
   fetch() {
     if (process.server) {
-      this.page = this.$staticAPI.getPage(this.$route.path)
+      this.pagina = this.$staticAPI.getPagina(this.$route.path)
+      //console.log(this.pagina)
     }
   },
   key(route) {

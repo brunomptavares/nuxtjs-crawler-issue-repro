@@ -1,0 +1,84 @@
+[
+  {
+    "_id": "6088bbf4c99b2324c021ab12",
+    "url": "/a",
+    "entrada": "A",
+    "nivel": 0,
+    "pagina": {
+      "_id": "6088d4487b3a460490ee18ca"
+    }
+  },
+  {
+    "_id": "6088bc35c99b2324c021ab14",
+    "url": "/a/aa",
+    "entrada": "AA",
+    "nivel": 1,
+    "pagina": null
+  },
+  {
+    "_id": "6088bc35c99b2324c021ab15",
+    "url": "/a/aa/aaa",
+    "entrada": "AAA",
+    "nivel": 2,
+    "pagina": {
+      "_id": "6088bc35c99b2324c021ab13"
+    }
+  },
+  {
+    "_id": "6088bc47c99b2324c021ab17",
+    "url": "/a/ab",
+    "entrada": "AB",
+    "nivel": 1,
+    "pagina": null
+  },
+  {
+    "_id": "6088bc47c99b2324c021ab18",
+    "url": "/a/ab/aba",
+    "entrada": "ABA",
+    "nivel": 2,
+    "pagina": {
+      "_id": "6088bc47c99b2324c021ab16"
+    }
+  },
+  {
+    "_id": "6088bc5dc99b2324c021ab1a",
+    "url": "/a/ab/abb",
+    "entrada": "ABB",
+    "nivel": 2,
+    "pagina": {
+      "_id": "6088bc5dc99b2324c021ab19"
+    }
+  },
+  {
+    "_id": "6088bc84c99b2324c021ab1e",
+    "url": "/b",
+    "entrada": "B",
+    "nivel": 0,
+    "pagina": null
+  },
+  {
+    "_id": "6088bc84c99b2324c021ab1f",
+    "url": "/b/ba",
+    "entrada": "BA",
+    "nivel": 1,
+    "pagina": {
+      "_id": "6088bc92c99b2324c021ab21"
+    }
+  },
+  {
+    "_id": "6088bcb5c99b2324c021ab24",
+    "url": "/c",
+    "entrada": "C",
+    "nivel": 0,
+    "pagina": {
+      "_id": "6088d3bb7b3a460490ee18c8"
+    }
+  },
+  {
+    "_id": "608dc86ed3317337a4ee2188",
+    "url": "/yao",
+    "entrada": "yao",
+    "nivel": 0,
+    "pagina": null
+  }
+]
