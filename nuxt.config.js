@@ -58,6 +58,6 @@ export default {
   },
 
   generate: {
-    //crawler: false
+    crawler: false
   },
 }

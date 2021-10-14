@@ -49,6 +49,7 @@ let generateDynamicRoutes = async function() {
       })
     }
   }
+  console.log(routes)
   return routes
 }
 

@@ -21,17 +21,20 @@ export default {
   created() {
   },
   asyncData(context) {
-    //console.log("asyncData")
-    console.log(context.payload)
+    if (process.server) {
+      console.log("asyncData:payload")
+      console.log(context.payload)
+    }
   },
   //Nuxtjs
   async middleware({payload, store}) {
-    //console.log(payload)
+    console.log("middleware")
+    console.log(payload)
   },
   fetch() {
     if (process.server) {
-      this.pagina = this.$staticAPI.getPagina(this.$route.path)
-      //console.log(this.pagina)
+      console.log("fetch:payload")
+      console.log(this.$nuxt.context.payload)
     }
   },
   key(route) {

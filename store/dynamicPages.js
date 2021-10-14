@@ -1,13 +1,18 @@
 export const state = () => ({
   current: {
-    _id: null,
+    pagina: null,
     navMenuNivel0: null
-  }
+  },
+  paginas: [],
+  navegacao: []
 })
 
 export const mutations = {
-  setCurrentPage (state, payload) {
+  SET_CURRENT_PAGINA (state, payload) {
     state.current = payload
+  },
+  ADD_PAGINA (state, pagina) {
+    state.paginas.push(pagina)
   }
 }
 
